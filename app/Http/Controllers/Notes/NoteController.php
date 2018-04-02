@@ -12,6 +12,11 @@ use App\Http\Controllers\Controller;
 
 class NoteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.basic');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +24,6 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $this->middleware('auth.basic');
-        
         $notes = Note::all();
 
         return Fractal::collection($notes, new NoteTransformer());
