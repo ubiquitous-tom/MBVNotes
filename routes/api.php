@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/register', ['as' => 'users', 'uses' => 'RegisterController@index']);
+
 Route::group(['namespace' => 'Notes', 'prefix' => '/notes'], function () {
 
     Route::get('/', ['as' => 'notes', 'uses' => 'NoteController@index']);
