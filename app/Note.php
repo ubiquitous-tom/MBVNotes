@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon created_at
  * @property Carbon updated_at
  */
-class notes extends Model
+class Note extends Model
 {
     //
 }
