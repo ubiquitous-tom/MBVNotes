@@ -19,6 +19,8 @@ class NoteController extends Controller
      */
     public function index()
     {
+        $this->middleware('auth.basic');
+        
         $notes = Note::all();
 
         return Fractal::collection($notes, new NoteTransformer());
