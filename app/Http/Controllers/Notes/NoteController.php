@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Notes;
 
+use App\Http\Requests\Notes\StoreNoteRequest;
+use App\Http\Requests\Notes\UpdateNoteRequest;
 use App\Note;
 use App\Transformers\NoteTransformer;
 use Cyvelnet\Laravel5Fractal\Facades\Fractal;
@@ -23,24 +25,22 @@ class NoteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNoteRequest $request)
     {
-        //
+        $note = new Note();
+
+        $note->author_id = 1; // $request->author_id;
+        $note->title = $request->title;
+        $note->body = $request->body;
+
+        $note->save();
+
+        return Fractal::item($note, new NoteTransformer());
     }
 
     /**
@@ -49,21 +49,11 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Note $note)
     {
-        //
+        return Fractal::item($note, new NoteTransformer());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -72,9 +62,14 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateNoteRequest $request, Note $note)
     {
-        //
+        $note->title = $request->get('title', $note->title);
+        $note->body = $request->get('body', $note->body);
+
+        $note->save();
+
+        return Fractal::item($note, new NoteTransformer());
     }
 
     /**
@@ -83,8 +78,23 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Note $note)
     {
-        //
+        $id = $note->id;
+        $title = $note->title;
+
+        $content = [
+            'response' => 200,
+            'message' => 'Note ' . $id . ' - ' . $title . ' is deleted',
+            'data' => [
+                'id' => $id,
+                'title' => $title,
+            ],
+        ];
+
+        $note->delete();
+
+        return response(json_encode($content), 200);
+
     }
 }
