@@ -30,6 +30,6 @@ class CreateNotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Note');
+        Schema::dropIfExists('notes');
     }
 }

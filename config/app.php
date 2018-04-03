@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
         \Cyvelnet\Laravel5Fractal\Laravel5FractalServiceProvider::class,
+        \Laravel\Passport\PassportServiceProvider::class,
 
         /*
          * Application Service Providers...
