@@ -1,0 +1,308 @@
+{
+	"info": {
+		"_postman_id": "5cf7af07-16d9-45a9-aea2-967917f25e4c",
+		"name": "Notes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Notes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjExOTBjYzM4OTUzMWNmMTVhMzQ1OWEyN2FhZWJhNmZkOGE1NmYwNjNlMjhiNTI5MTczOTk3OGYyOGRmYjUxNGExOTBmZDBlMmQ1ODhlMTU0In0.eyJhdWQiOiIyIiwianRpIjoiMTE5MGNjMzg5NTMxY2YxNWEzNDU5YTI3YWFlYmE2ZmQ4YTU2ZjA2M2UyOGI1MjkxNzM5OTc4ZjI4ZGZiNTE0YTE5MGZkMGUyZDU4OGUxNTQiLCJpYXQiOjE1MjI3MTkxNzgsIm5iZiI6MTUyMjcxOTE3OCwiZXhwIjoxNTU0MjU1MTc4LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.ezDrg4gWQMyxe85lY3FGWt8zJ3nwOU-MmqsfUe48jYtDS7KsR2O2ck_bieeXApCPMmMQeROIIDF51WPPr6KCnr5JbnN6y1__x8B19sqGGJZtpsr3LLOtsBaj_kWUjAP3yh0jnZQTtywB8BY_RBMW-PW4oUH3MRi9LWBS-5WzRKJvWO2nKgFPCjHa9BswfW8a1FsjPER_otmlKOjox8jEAq_zpLYR05iNSi3GkmRAdwgKuBT0B4bbOFOw-5CjmSAHsbZyLLIeSWiq8DdJpISX9d5hGIFdoXAVvcOupyIOxuu2_YfauSuFKqOeXzNeq-bh8DejsQjwE20ZmHPHjuWWD1qpYsQcc9Bpu5ZeO8Docagr0uEXrtodcfJKx8-Q_gpQzacR4ZRXs8ydqeA06GLZFkHNMgbVvfP3zbQalFu2wdTAdm4raUwCiJyjsNbIG_QYugwAys2a7j5cibHA3r2vOaF6MXxY1t9pD6hQzE2Ni88CaXFjpo-5JV8nWlvA091kv_F5UeDZOjmsKj7p07oub7EPyF157BfFz0KKBV7ROuxih6BXee_OKsqlJGMYN9mD2R7lfgGvY7TDQKtt0UQs3_j80pxh87915a1hIl-bacBGR57zMwCvaxPUYLPMpXgmwUuk95psn1xUZdiDcW_9Hxmh-cBd8c5JI2yNpG-yw7A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "mbvnotes/api/notes?",
+					"host": [
+						"mbvnotes"
+					],
+					"path": [
+						"api",
+						"notes"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "mcglynn.hillard@example.org",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get OAuth Token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"client_id\": \"2\",\n\t\"client_secret\": \"ukC6yGdsv1EnXgLfdbJJsySShrB4jy0LuJ6L5pXP\",\n\t\"grant_type\": \"password\",\n\t\"scope\": \"*\",\n\t\"username\": \"skiles.sven@example.com\",\n\t\"password\": \"secret\"\n}"
+				},
+				"url": {
+					"raw": "mbvnotes/oauth/token?",
+					"host": [
+						"mbvnotes"
+					],
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "mcglynn.hillard@example.org",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Sarah\",\n  \"email\": \"sarah@example.com\",\n  \"password\": \"12345678\"\n}"
+				},
+				"url": {
+					"raw": "mbvnotes/api/register",
+					"host": [
+						"mbvnotes"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Store Note",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjExOTBjYzM4OTUzMWNmMTVhMzQ1OWEyN2FhZWJhNmZkOGE1NmYwNjNlMjhiNTI5MTczOTk3OGYyOGRmYjUxNGExOTBmZDBlMmQ1ODhlMTU0In0.eyJhdWQiOiIyIiwianRpIjoiMTE5MGNjMzg5NTMxY2YxNWEzNDU5YTI3YWFlYmE2ZmQ4YTU2ZjA2M2UyOGI1MjkxNzM5OTc4ZjI4ZGZiNTE0YTE5MGZkMGUyZDU4OGUxNTQiLCJpYXQiOjE1MjI3MTkxNzgsIm5iZiI6MTUyMjcxOTE3OCwiZXhwIjoxNTU0MjU1MTc4LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.ezDrg4gWQMyxe85lY3FGWt8zJ3nwOU-MmqsfUe48jYtDS7KsR2O2ck_bieeXApCPMmMQeROIIDF51WPPr6KCnr5JbnN6y1__x8B19sqGGJZtpsr3LLOtsBaj_kWUjAP3yh0jnZQTtywB8BY_RBMW-PW4oUH3MRi9LWBS-5WzRKJvWO2nKgFPCjHa9BswfW8a1FsjPER_otmlKOjox8jEAq_zpLYR05iNSi3GkmRAdwgKuBT0B4bbOFOw-5CjmSAHsbZyLLIeSWiq8DdJpISX9d5hGIFdoXAVvcOupyIOxuu2_YfauSuFKqOeXzNeq-bh8DejsQjwE20ZmHPHjuWWD1qpYsQcc9Bpu5ZeO8Docagr0uEXrtodcfJKx8-Q_gpQzacR4ZRXs8ydqeA06GLZFkHNMgbVvfP3zbQalFu2wdTAdm4raUwCiJyjsNbIG_QYugwAys2a7j5cibHA3r2vOaF6MXxY1t9pD6hQzE2Ni88CaXFjpo-5JV8nWlvA091kv_F5UeDZOjmsKj7p07oub7EPyF157BfFz0KKBV7ROuxih6BXee_OKsqlJGMYN9mD2R7lfgGvY7TDQKtt0UQs3_j80pxh87915a1hIl-bacBGR57zMwCvaxPUYLPMpXgmwUuk95psn1xUZdiDcW_9Hxmh-cBd8c5JI2yNpG-yw7A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"This is the note title 1\",\n  \"body\": \"This is the note body 1\"\n}"
+				},
+				"url": {
+					"raw": "mbvnotes/api/notes?",
+					"host": [
+						"mbvnotes"
+					],
+					"path": [
+						"api",
+						"notes"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "This is the title",
+							"disabled": true
+						},
+						{
+							"key": "body",
+							"value": "This is the body",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Note by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjExOTBjYzM4OTUzMWNmMTVhMzQ1OWEyN2FhZWJhNmZkOGE1NmYwNjNlMjhiNTI5MTczOTk3OGYyOGRmYjUxNGExOTBmZDBlMmQ1ODhlMTU0In0.eyJhdWQiOiIyIiwianRpIjoiMTE5MGNjMzg5NTMxY2YxNWEzNDU5YTI3YWFlYmE2ZmQ4YTU2ZjA2M2UyOGI1MjkxNzM5OTc4ZjI4ZGZiNTE0YTE5MGZkMGUyZDU4OGUxNTQiLCJpYXQiOjE1MjI3MTkxNzgsIm5iZiI6MTUyMjcxOTE3OCwiZXhwIjoxNTU0MjU1MTc4LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.ezDrg4gWQMyxe85lY3FGWt8zJ3nwOU-MmqsfUe48jYtDS7KsR2O2ck_bieeXApCPMmMQeROIIDF51WPPr6KCnr5JbnN6y1__x8B19sqGGJZtpsr3LLOtsBaj_kWUjAP3yh0jnZQTtywB8BY_RBMW-PW4oUH3MRi9LWBS-5WzRKJvWO2nKgFPCjHa9BswfW8a1FsjPER_otmlKOjox8jEAq_zpLYR05iNSi3GkmRAdwgKuBT0B4bbOFOw-5CjmSAHsbZyLLIeSWiq8DdJpISX9d5hGIFdoXAVvcOupyIOxuu2_YfauSuFKqOeXzNeq-bh8DejsQjwE20ZmHPHjuWWD1qpYsQcc9Bpu5ZeO8Docagr0uEXrtodcfJKx8-Q_gpQzacR4ZRXs8ydqeA06GLZFkHNMgbVvfP3zbQalFu2wdTAdm4raUwCiJyjsNbIG_QYugwAys2a7j5cibHA3r2vOaF6MXxY1t9pD6hQzE2Ni88CaXFjpo-5JV8nWlvA091kv_F5UeDZOjmsKj7p07oub7EPyF157BfFz0KKBV7ROuxih6BXee_OKsqlJGMYN9mD2R7lfgGvY7TDQKtt0UQs3_j80pxh87915a1hIl-bacBGR57zMwCvaxPUYLPMpXgmwUuk95psn1xUZdiDcW_9Hxmh-cBd8c5JI2yNpG-yw7A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"This is the new title\"\n}"
+				},
+				"url": {
+					"raw": "mbvnotes/api/notes/10",
+					"host": [
+						"mbvnotes"
+					],
+					"path": [
+						"api",
+						"notes",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Note",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjExOTBjYzM4OTUzMWNmMTVhMzQ1OWEyN2FhZWJhNmZkOGE1NmYwNjNlMjhiNTI5MTczOTk3OGYyOGRmYjUxNGExOTBmZDBlMmQ1ODhlMTU0In0.eyJhdWQiOiIyIiwianRpIjoiMTE5MGNjMzg5NTMxY2YxNWEzNDU5YTI3YWFlYmE2ZmQ4YTU2ZjA2M2UyOGI1MjkxNzM5OTc4ZjI4ZGZiNTE0YTE5MGZkMGUyZDU4OGUxNTQiLCJpYXQiOjE1MjI3MTkxNzgsIm5iZiI6MTUyMjcxOTE3OCwiZXhwIjoxNTU0MjU1MTc4LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.ezDrg4gWQMyxe85lY3FGWt8zJ3nwOU-MmqsfUe48jYtDS7KsR2O2ck_bieeXApCPMmMQeROIIDF51WPPr6KCnr5JbnN6y1__x8B19sqGGJZtpsr3LLOtsBaj_kWUjAP3yh0jnZQTtywB8BY_RBMW-PW4oUH3MRi9LWBS-5WzRKJvWO2nKgFPCjHa9BswfW8a1FsjPER_otmlKOjox8jEAq_zpLYR05iNSi3GkmRAdwgKuBT0B4bbOFOw-5CjmSAHsbZyLLIeSWiq8DdJpISX9d5hGIFdoXAVvcOupyIOxuu2_YfauSuFKqOeXzNeq-bh8DejsQjwE20ZmHPHjuWWD1qpYsQcc9Bpu5ZeO8Docagr0uEXrtodcfJKx8-Q_gpQzacR4ZRXs8ydqeA06GLZFkHNMgbVvfP3zbQalFu2wdTAdm4raUwCiJyjsNbIG_QYugwAys2a7j5cibHA3r2vOaF6MXxY1t9pD6hQzE2Ni88CaXFjpo-5JV8nWlvA091kv_F5UeDZOjmsKj7p07oub7EPyF157BfFz0KKBV7ROuxih6BXee_OKsqlJGMYN9mD2R7lfgGvY7TDQKtt0UQs3_j80pxh87915a1hIl-bacBGR57zMwCvaxPUYLPMpXgmwUuk95psn1xUZdiDcW_9Hxmh-cBd8c5JI2yNpG-yw7A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"This is the new post note title\"\n}"
+				},
+				"url": {
+					"raw": "mbvnotes/api/notes/10",
+					"host": [
+						"mbvnotes"
+					],
+					"path": [
+						"api",
+						"notes",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Destroy Note",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjExOTBjYzM4OTUzMWNmMTVhMzQ1OWEyN2FhZWJhNmZkOGE1NmYwNjNlMjhiNTI5MTczOTk3OGYyOGRmYjUxNGExOTBmZDBlMmQ1ODhlMTU0In0.eyJhdWQiOiIyIiwianRpIjoiMTE5MGNjMzg5NTMxY2YxNWEzNDU5YTI3YWFlYmE2ZmQ4YTU2ZjA2M2UyOGI1MjkxNzM5OTc4ZjI4ZGZiNTE0YTE5MGZkMGUyZDU4OGUxNTQiLCJpYXQiOjE1MjI3MTkxNzgsIm5iZiI6MTUyMjcxOTE3OCwiZXhwIjoxNTU0MjU1MTc4LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.ezDrg4gWQMyxe85lY3FGWt8zJ3nwOU-MmqsfUe48jYtDS7KsR2O2ck_bieeXApCPMmMQeROIIDF51WPPr6KCnr5JbnN6y1__x8B19sqGGJZtpsr3LLOtsBaj_kWUjAP3yh0jnZQTtywB8BY_RBMW-PW4oUH3MRi9LWBS-5WzRKJvWO2nKgFPCjHa9BswfW8a1FsjPER_otmlKOjox8jEAq_zpLYR05iNSi3GkmRAdwgKuBT0B4bbOFOw-5CjmSAHsbZyLLIeSWiq8DdJpISX9d5hGIFdoXAVvcOupyIOxuu2_YfauSuFKqOeXzNeq-bh8DejsQjwE20ZmHPHjuWWD1qpYsQcc9Bpu5ZeO8Docagr0uEXrtodcfJKx8-Q_gpQzacR4ZRXs8ydqeA06GLZFkHNMgbVvfP3zbQalFu2wdTAdm4raUwCiJyjsNbIG_QYugwAys2a7j5cibHA3r2vOaF6MXxY1t9pD6hQzE2Ni88CaXFjpo-5JV8nWlvA091kv_F5UeDZOjmsKj7p07oub7EPyF157BfFz0KKBV7ROuxih6BXee_OKsqlJGMYN9mD2R7lfgGvY7TDQKtt0UQs3_j80pxh87915a1hIl-bacBGR57zMwCvaxPUYLPMpXgmwUuk95psn1xUZdiDcW_9Hxmh-cBd8c5JI2yNpG-yw7A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "mbvnotes/api/notes/32",
+					"host": [
+						"mbvnotes"
+					],
+					"path": [
+						"api",
+						"notes",
+						"32"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
