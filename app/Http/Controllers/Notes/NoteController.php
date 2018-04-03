@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class NoteController extends Controller
 {
     private $user;
-    
+
     /**
      * Display a listing of the resource.
      *
