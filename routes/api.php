@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register', ['as' => 'users', 'uses' => 'RegisterController@index']);
 
-Route::group(['namespace' => 'Notes', 'prefix' => '/notes'], function () {
+Route::group(['namespace' => 'Notes', 'prefix' => '/notes', 'middleware' => 'simpleauth'], function () {
 
     Route::get('/', ['as' => 'notes', 'uses' => 'NoteController@index']);
     Route::put('/', ['as' => 'notes.store', 'uses' => 'NoteController@store']);

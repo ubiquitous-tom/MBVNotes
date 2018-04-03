@@ -9,26 +9,24 @@ use App\Transformers\NoteTransformer;
 use Cyvelnet\Laravel5Fractal\Facades\Fractal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class NoteController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.basic');
-    }
-
+    private $user;
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->middleware('auth.basic');
-        
-        $notes = Note::all();
+        $this->user = Auth::guard()->user();
+        $author_id = $this->user->id;
+        $notes = Note::where(['author_id' => $author_id])->paginate(10);
 
-        return Fractal::collection($notes, new NoteTransformer());
+        return Fractal::includes('author')->collection($notes, new NoteTransformer());
     }
 
     /**
@@ -39,15 +37,17 @@ class NoteController extends Controller
      */
     public function store(StoreNoteRequest $request)
     {
+        $this->user = Auth::guard()->user();
+
         $note = new Note();
 
-        $note->author_id = 1; // $request->author_id;
+        $note->author_id =  $this->user->id;
         $note->title = $request->title;
         $note->body = $request->body;
 
         $note->save();
 
-        return Fractal::item($note, new NoteTransformer());
+        return Fractal::includes('author')->item($note, new NoteTransformer());
     }
 
     /**
@@ -58,7 +58,9 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        return Fractal::item($note, new NoteTransformer());
+        $this->user = Auth::guard()->user();
+
+        return Fractal::includes('author')->item($note, new NoteTransformer());
     }
 
 
@@ -71,12 +73,18 @@ class NoteController extends Controller
      */
     public function update(UpdateNoteRequest $request, Note $note)
     {
+        $this->user = Auth::guard()->user();
+        $author_id = $this->user->id;
+        $noteAuthorId = $note->author_id;
+
         $note->title = $request->get('title', $note->title);
         $note->body = $request->get('body', $note->body);
 
-        $note->save();
+        if ($author_id === $noteAuthorId) {
+            $note->save();
+        }
 
-        return Fractal::item($note, new NoteTransformer());
+        return Fractal::includes('author')->item($note, new NoteTransformer());
     }
 
     /**
@@ -87,8 +95,12 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
+        $this->user = Auth::guard()->user();
+
         $id = $note->id;
         $title = $note->title;
+        $noteAuthorId = $note->author_id;
+        $authorId = $this->user->id;
 
         $content = [
             'response' => 200,
@@ -99,7 +111,9 @@ class NoteController extends Controller
             ],
         ];
 
-        $note->delete();
+        if ($noteAuthorId === $authorId) {
+            $note->delete();
+        }
 
         return response(json_encode($content), 200);
 
